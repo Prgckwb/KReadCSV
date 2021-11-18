@@ -14,6 +14,8 @@ class Line {
         val optionsLineName = mutableListOf<String>()
         val optionsLineCd = mutableListOf<String>()
 
+//        val searchList = linesList.map { it.split(",")[LINE_NAME] }
+
         for (str in linesList) {
             if (str.contains(lineName)) {
                 var flag = false

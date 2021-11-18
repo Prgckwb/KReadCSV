@@ -13,7 +13,7 @@ class Station {
 
     val stationsList = Files.readAllLines(STATION_PATH)
 
-    fun getStationListFromLineCd(lineCd: String): String{
+    fun getStationListFromLineCd(lineCd: String): MutableList<String>{
         val stations = mutableListOf<String>()
         for (str in stationsList){
             val splitedStringList = str.split(",")
@@ -21,12 +21,7 @@ class Station {
                 stations.add(splitedStringList[STATION_NAME])
             }
         }
-        return stations.joinToString("\n")
-    }
-
-    fun ex(): String{
-        var str: String = ""
-        File(STATION_PATH.toUri()).forEachLine { str += "${it}\n" }
-        return str
+//        return stations.joinToString("\n")
+        return stations
     }
 }
