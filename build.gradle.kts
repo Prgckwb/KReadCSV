@@ -30,11 +30,12 @@ compose.desktop {
         mainClass = "MainKt"
 
         nativeDistributions {
-            modules("java.sql")
             includeAllModules = true
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "KReadCSV"
             packageVersion = "1.0.0"
+
+            appResourcesRootDir.set(project.layout.projectDirectory.dir("../resources"))
         }
     }
 }
