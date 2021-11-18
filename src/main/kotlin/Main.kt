@@ -13,12 +13,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ExperimentalGraphicsApi
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 import kotlin.random.Random
-
 
 fun main() = application {
     Window(
@@ -28,6 +28,7 @@ fun main() = application {
         MyApp()
     }
 }
+
 
 @OptIn(ExperimentalGraphicsApi::class, androidx.compose.material.ExperimentalMaterialApi::class)
 @Composable
@@ -41,27 +42,32 @@ fun MyApp() {
         var targetLineName = ""
 
         Column {
+//            路線名検索
             Row(modifier = Modifier.padding(8.dp)) {
                 OutlinedTextField(
                     value = inputLineName,
                     onValueChange = { inputLineName = it },
                     label = { Text("路線名") },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(8.dp),
+                    maxLines = 1
                 )
             }
 
+//            タグ指定
             Row(modifier = Modifier.padding(horizontal = 8.dp)) {
                 OutlinedTextField(
                     value = inputStartTag,
                     onValueChange = { inputStartTag = it },
                     label = { Text("開始タグ") },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(8.dp),
+                    maxLines = 1
                 )
                 OutlinedTextField(
                     value = inputEndTag,
                     onValueChange = { inputEndTag = it },
                     label = { Text("終了タグ") },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(8.dp),
+                    maxLines = 1
                 )
             }
 
@@ -105,13 +111,13 @@ fun MyApp() {
                                 .fillMaxWidth()
                                 .clip(CircleShape),
                             colors = ButtonDefaults.buttonColors(
-                                backgroundColor = Color.hsl(Random.nextFloat() * 360, 0.3F, 0.4F)
+                                backgroundColor = Color.hsl(Random.nextFloat() * 360, 0.4F, 0.5F)
                             )
                         ) {
                             Text(
                                 text = pair.second[it],
                                 color = Color(0xFFeeeeee),
-                                style = MaterialTheme.typography.body1,
+                                style = MaterialTheme.typography.h6,
                             )
 
                             if (alertFlag) {

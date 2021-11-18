@@ -25,11 +25,13 @@ tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "11"
 }
 
-
 compose.desktop {
     application {
         mainClass = "MainKt"
+
         nativeDistributions {
+            modules("java.sql")
+            includeAllModules = true
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "KReadCSV"
             packageVersion = "1.0.0"

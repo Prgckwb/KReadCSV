@@ -7,6 +7,7 @@ class Station {
     companion object {
         const val LINE_CD: Int = 5
         const val STATION_NAME: Int = 2
+        const val STATION_CD:Int = 0
 
         val STATION_PATH: Path = Paths.get("./src/main/resources/station.csv")
     }
