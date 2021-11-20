@@ -1,4 +1,5 @@
 # KReadCSV
+Javaで実装したCUIツール[ReadCSV](https://github.com/Prgckwb/ReadCSV)をKotlinでGUIに移植したものです。
 路線名を検索すると、その路線に属する駅名リストをクリップボードへコピーします。
 任意タグを指定することでそれらで駅名を囲むことができます。
 使用している路線リスト、駅リストのCSVファイルは[駅データ.jp](https://www.ekidata.jp/)のものを利用しています。
