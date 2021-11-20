@@ -8,15 +8,15 @@ class Line {
         const val LINE_NAME = 2
     }
 
-    /*
-        (1)IntelliJから実行する時は1を実行
-        (2)appファイルから実行する場合は2を実行
-     */
-        val LINE_PATH = Paths.get("./src/main/resources/line.csv")                // 1
-        val linesList: MutableList<String> = Files.readAllLines(LINE_PATH)        // 1
-//    val resourcesDir = File(System.getProperty("compose.application.resources.dir")) // 2
-//    val filePath = resourcesDir.resolve("line.csv").toPath()                   // 2
-//    val linesList: MutableList<String> = Files.readAllLines(filePath)                  // 2
+    private var linesList: MutableList<String> = if (ReadModel.isApp) {
+        val resourcesDir = File(System.getProperty("compose.application.resources.dir"))
+        val filePath = resourcesDir.resolve("line.csv").toPath()
+        Files.readAllLines(filePath)
+    } else {
+        val LINE_PATH = Paths.get("./src/main/resources/line.csv")
+        Files.readAllLines(LINE_PATH)
+    }
+
 
     fun getLinesListsFromLineName(lineName: String): Pair<List<String>, List<String>> {
         val optionsLineName = mutableListOf<String>()

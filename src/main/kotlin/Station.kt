@@ -9,22 +9,21 @@ class Station {
         const val STATION_NAME: Int = 2
     }
 
-    /*
-        (1)IntelliJから実行する時は1を実行
-        (2)appファイルから実行する場合は2を実行
-     */
-        val STATION_PATH: Path = Paths.get("./src/main/resources/station.csv")     // 1
-        val stationsList = Files.readAllLines(STATION_PATH)                     // 1
-//    private val resourceDir = File(System.getProperty("compose.application.resources.dir")) // 2
-//    private val filePath = resourceDir.resolve("station.csv").toPath()              //  2
-//    private val stationsList: MutableList<String> = Files.readAllLines(filePath)            //  2
+    private var stationsList: MutableList<String> = if (ReadModel.isApp) {
+        val resourceDir = File(System.getProperty("compose.application.resources.dir")) // 2
+        val filePath = resourceDir.resolve("station.csv").toPath()              //  2
+        Files.readAllLines(filePath)            //  2
+    } else {
+        val filePath: Path = Paths.get("./src/main/resources/station.csv")     // 1
+        Files.readAllLines(filePath)                     // 1
+    }
 
-//
-    fun getStationListFromLineCd(lineCd: String): MutableList<String>{
+    //
+    fun getStationListFromLineCd(lineCd: String): MutableList<String> {
         val stations = mutableListOf<String>()
-        for (str in stationsList){
+        for (str in stationsList) {
             val splitedStringList = str.split(",")
-            if(splitedStringList[LINE_CD] == lineCd){
+            if (splitedStringList[LINE_CD] == lineCd) {
                 stations.add(splitedStringList[STATION_NAME])
             }
         }
